@@ -1,0 +1,23 @@
+</!DOCTYPE html>
+<html>
+<head> <title> URL Shortener </title> </head>
+<body>
+<h2> Shortener your URL </h2>
+    <input id="longUrl" type="text", placeholder="Enter long URL">
+<button onclick="shorten()">Shorten</button>
+<p id="result"></p>
+
+<script>
+async function shorten() {
+const url = document.getElementById("longUrl").value;
+const res = await fetch('/shorten', {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({url})
+});
+const data = await res.json();
+document.getElementById("result").innerText = `Short URL: ${data.short_url}`;
+} 
+</script>
+</body>
+</html>
