@@ -15,9 +15,10 @@
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({url})
     });
+  
+    const data = await res.json();
+    document.getElementById("result").innerText = `Short URL: ${data.short_url}`;
   };
-const data = await res.json();
-document.getElementById("result").innerText = `Short URL: ${data.short_url}`;
 </script>
 </body>
 </html>
