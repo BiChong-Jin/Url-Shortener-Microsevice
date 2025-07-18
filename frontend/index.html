@@ -10,7 +10,7 @@
 <script>
   async function shorten() {
     const url = document.getElementById("longUrl").value;
-    const res = await fetch('/shorten', {
+    const res = await fetch('http://localhost/shorten', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({url})
