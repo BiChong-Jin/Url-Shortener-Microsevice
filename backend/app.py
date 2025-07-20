@@ -4,9 +4,15 @@ import string
 
 import redis
 from flask import Flask, jsonify, redirect, request
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
 
 app = Flask(__name__)
 r = redis.Redis(host=os.getenv("REDIS_HOST", "localhost"), port=6379)
+
+shorten_counter = Counter("shorten_requests_total", "Total POST /shorten calles")
+shorten_latency = Histogram(
+    "shorten_latency_seconds", "Time taken for shorten requests"
+)
 
 
 def generate_key(length=6):
@@ -14,7 +20,9 @@ def generate_key(length=6):
 
 
 @app.route("/shorten", methods=["POST"])
+@shorten_latency.time()
 def shorten():
+    shorten_counter.inc()
     long_url = request.json["url"]
     key = generate_key()
     r.set(key, long_url)
@@ -29,6 +37,11 @@ def redirect_url(key):
         return redirect(url.decode())
 
     return jsonify({"error": "Not found"}), 404
+
+
+@app.route("/metrics")
+def metrics():
+    return generate_latest(), 200, {"Content-Type": CONTENT_TYPE_LATEST}
 
 
 if __name__ == "__main__":
