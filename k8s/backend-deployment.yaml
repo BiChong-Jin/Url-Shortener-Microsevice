@@ -12,7 +12,7 @@ spec:
       labels:
         app: backend
       annotations:
-        prometheus.io/scrape: "ture"
+        prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
         prometheus.io/port: "5000"
     spec:
