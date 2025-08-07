@@ -41,6 +41,7 @@ helm install url-shortener ./helm
 ```
 
 To uninstall:
+
 ```bash
 helm uninstall url-shortener
 ```
@@ -51,6 +52,7 @@ helm uninstall url-shortener
 
 1. **Backend CPU Usage Per Pod**  
    Query used:
+
    ```promql
    sum by (pod) (
      rate(container_cpu_usage_seconds_total{pod=~"backend.*"}[1m])
@@ -77,6 +79,7 @@ resources:
 ```
 
 Applied HPA:
+
 ```bash
 kubectl autoscale deployment backend --cpu-percent=50 --min=1 --max=5
 ```
@@ -102,9 +105,7 @@ annotations:
 .
 ├── backend/
 ├── frontend/
-├── helm/
-│   ├── templates/
-│   └── values.yaml
+├── k8s/
 └── README.md
 ```
 
@@ -122,6 +123,7 @@ annotations:
 ## 🧠 Author Notes
 
 Built as a personal DevOps project to demonstrate:
+
 - Kubernetes deployment using Helm
 - Microservices architecture
 - Monitoring & observability using Prometheus & Grafana
