@@ -50,6 +50,11 @@ helm uninstall url-shortener
 
 ## 📈 Grafana Dashboards
 
+**CPU usage per pod**
+![CPU usage per pod](./screenshots/cpu usage per pod.png)
+**Query**
+![Query](./screenshots/query.png)
+
 1. **Backend CPU Usage Per Pod**  
    Query used:
 
