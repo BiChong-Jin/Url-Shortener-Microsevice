@@ -65,7 +65,7 @@ helm uninstall url-shortener
    ```
 
 2. **Custom Dashboards**  
-   Feel free to add memory usage, HPA current vs desired, etc.
+   Free to add memory usage, HPA current vs desired, etc.
 
 ---
 
